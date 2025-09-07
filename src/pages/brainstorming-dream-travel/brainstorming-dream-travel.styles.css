@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
 .brainstorming-dream-travel-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
   background-color: #f7f7f7; /* Lighter background for a modern feel */
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Poiret One', cursive;
   overflow: hidden;
 }
 
@@ -17,7 +15,7 @@
   box-shadow: 0 2px 8px rgba(178, 177, 177, 0.1); /* More pronounced shadow */
   text-align: center;
   color: #868484; /* Darker text for better contrast */
-  font-family: 'Coming Soon'; /* Apply Coming Soon to header */
+  font-family: 'Poiret One', cursive; /* Apply Poiret One to header */
   font-size: 1rem; /* Adjusted to match subheading font size on home page */
   font-weight: 700;
   flex-shrink: 0;

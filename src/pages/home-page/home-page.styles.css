@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow: hidden;
-  font-family: 'Open Sans', sans-serif; /* Apply to the whole app */
+  font-family: 'Poiret One', cursive; /* Apply Poiret One to the whole app */
 }
 
 .carousel-container {
@@ -50,7 +48,7 @@ body, html {
 }
 
 .content h1 {
-  font-family: 'Coming Soon', cursive;
+  font-family: 'Poiret One', cursive;
   font-size: 3em;
   margin-bottom: 10px;
   background-color: transparent; /* Removed background color */
@@ -60,7 +58,7 @@ body, html {
 }
 
 .content h2 {
-  font-family: 'Coming Soon', cursive;
+  font-family: 'Poiret One', cursive;
   font-size: 1.5em;
   margin-bottom: 30px;
   background-color: transparent; /* Removed background color */
@@ -82,7 +80,7 @@ body, html {
   border-radius: 30px; /* More rounded corners */
   background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent white background */
   color: white;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Poiret One', cursive;
   font-size: 1.1em;
   cursor: pointer;
   transition: all 0.3s ease-in-out;

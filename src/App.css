@@ -9,4 +9,10 @@
   --white: #ffffff;
   --border-radius: 8px;
   --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --font-family: 'Poiret One', cursive;
+}
+
+/* Apply Poiret One font to all elements */
+* {
+  font-family: var(--font-family);
 }

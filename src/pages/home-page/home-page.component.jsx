@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { nextImage } from '../../store/carouselSlice';
 import './home-page.styles.css';
 import { resetTyping, typeHeadingChar, typeSubheadingChar } from '../../store/typingSlice';
+import { useNavigate } from 'react-router-dom';
+import ImagePreloader from '../../components/ImagePreloader';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -64,27 +66,41 @@ const HomePage = () => {
     };
   }, [dispatch, headingText, subheadingText]); // Dependencies only include stable items or things that genuinely trigger a re-setup
 
+  const navigate = useNavigate();
+
+  const handleBrainstormClick = () => {
+    navigate('/brainstorming-dream-travel');
+  };
+
   return (
-    <div className="carousel-container">
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`carousel-slide ${index === currentImageIndex ? 'active' : ''}`}
-          style={{
-            backgroundImage: `url(${image})`,
-          }}
-        ></div>
-      ))}
-      <div className="image-overlay"></div>
-      <div className="content">
-        <h1>{typedHeading}</h1>
-        <h2>{typedSubheading}</h2>
-        <div className="buttons-container">
-          <button className="dream-button">Draw my dream destination</button>
-          <button className="dream-button">Brain storm you dream travel</button>
+    <>
+      {/* Preload images with first image as priority for LCP */}
+      <ImagePreloader 
+        images={images} 
+        priority={[images[currentImageIndex]]} 
+      />
+      
+      <div className="carousel-container">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`carousel-slide ${index === currentImageIndex ? 'active' : ''}`}
+            style={{
+              backgroundImage: `url(${image})`,
+            }}
+          ></div>
+        ))}
+        <div className="image-overlay"></div>
+        <div className="content">
+          <h1>{typedHeading}</h1>
+          <h2>{typedSubheading}</h2>
+          <div className="buttons-container">
+            <button className="dream-button">Draw my dream destination</button>
+            <button className="dream-button" onClick={handleBrainstormClick}>Brain storm you dream travel</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

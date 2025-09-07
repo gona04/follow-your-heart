@@ -1,12 +1,19 @@
-# React + Vite
+# Follow Your Heart App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Follow Your Heart** is a modern re-imagining of a travel app, designed to make holiday planning **fun** and **interactive**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features  
 
-## Expanding the ESLint configuration
+### Brainstorm Mode  
+Helps you explore and shape your **dream holiday or travel plans** with guided prompts.  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Draw Mode  
+Allows you to **draw the kind of destination** you wish to see.  
+The app then suggests the destination that most closely matches your **drawing** and **description**.  
+
+---
+
+## Vision  
+Travel planning should feel inspiring and playful, not stressful. *Follow Your Heart* aims to blend creativity and exploration, giving you a fresh way to discover your perfect getaway.  

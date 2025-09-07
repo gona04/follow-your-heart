@@ -1,73 +1,68 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { nextImage } from '../../store/carouselSlice';
 import './home-page.styles.css';
-
-const images = [
-  '/images/beach1.jpg',
-  '/images/beach2.jpg',
-  '/images/image10.jpg',
-  '/images/image2.jpg',
-  '/images/image3.jpg',
-  '/images/image4.jpg',
-  '/images/image5.jpg',
-  '/images/image6.jpg',
-  '/images/image7.jpg',
-  '/images/image8.jpg',
-  '/images/jungle2.jpeg',
-];
+import { resetTyping, typeHeadingChar, typeSubheadingChar } from '../../store/typingSlice';
 
 const HomePage = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [typedHeading, setTypedHeading] = useState('');
-  const [typedSubheading, setTypedSubheading] = useState('');
+  const dispatch = useDispatch();
+  const { currentImageIndex, images } = useSelector((state) => state.carousel);
+  const { headingText, subheadingText, typedHeading, typedSubheading } = useSelector((state) => state.typing);
 
-  const headingText = "Foollow Your Heart".trim();
-  const subheadingText = "Arre you a beach person, mountain person, jungle person or...? ".trim();
+  // Use a ref to store the latest typedHeading and typedSubheading
+  const typedStateRef = useRef({ typedHeading, typedSubheading });
+
+  useEffect(() => {
+    typedStateRef.current = { typedHeading, typedSubheading };
+  }, [typedHeading, typedSubheading]); // Update ref whenever typedHeading or typedSubheading changes
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      dispatch(nextImage());
     }, 5000); // Change image every 5 seconds
     return () => clearInterval(interval);
-  }, []);
+  }, [dispatch]);
 
+  // Combined effect for typing the heading and then the subheading
   useEffect(() => {
-    setTypedHeading('');
-    setTypedSubheading('');
-    let hIndex = 0;
-    let sIndex = 0;
-    let headingTypingInterval;
-    let subheadingTypingInterval;
-  
-    const startHeadingTyping = () => {
-      headingTypingInterval = setInterval(() => {
-        if (hIndex < headingText.length) {
-          setTypedHeading((prev) => prev + headingText.charAt(hIndex));
-          hIndex++;
+    dispatch(resetTyping()); // Reset typing state on component mount
+
+    let hIntervalId;
+    let sIntervalId;
+
+    const startTypingHeading = () => {
+      hIntervalId = setInterval(() => {
+        // Access latest typedHeading from ref
+        if (typedStateRef.current.typedHeading.length < headingText.length) {
+          dispatch(typeHeadingChar());
         } else {
-          clearInterval(headingTypingInterval);
-          startSubheadingTyping();
+          clearInterval(hIntervalId);
+          // Delay before starting subheading typing
+          setTimeout(() => {
+            startTypingSubheading();
+          }, 500); // Small delay after heading is done
         }
-      }, 100);
+      }, 100); // Typing speed for heading
     };
-  
-    const startSubheadingTyping = () => {
-      subheadingTypingInterval = setInterval(() => {
-        if (sIndex < subheadingText.length) {
-          setTypedSubheading((prev) => prev + subheadingText.charAt(sIndex));
-          sIndex++;
+
+    const startTypingSubheading = () => {
+      sIntervalId = setInterval(() => {
+        // Access latest typedSubheading from ref
+        if (typedStateRef.current.typedSubheading.length < subheadingText.length) {
+          dispatch(typeSubheadingChar());
         } else {
-          clearInterval(subheadingTypingInterval);
+          clearInterval(sIntervalId);
         }
-      }, 70);
+      }, 70); // Typing speed for subheading
     };
-  
-    startHeadingTyping();
-  
+
+    startTypingHeading();
+
     return () => {
-      clearInterval(headingTypingInterval);
-      clearInterval(subheadingTypingInterval);
+      clearInterval(hIntervalId);
+      clearInterval(sIntervalId);
     };
-  }, []);    // Dependencies for re-running effect
+  }, [dispatch, headingText, subheadingText]); // Dependencies only include stable items or things that genuinely trigger a re-setup
 
   return (
     <div className="carousel-container">
@@ -81,8 +76,8 @@ const HomePage = () => {
         <div className="image-overlay"></div>
       </div>
       <div className="content">
-        <h1>{typedHeading}{typedHeading.length === headingText.length ? null : <span className="cursor"></span>}</h1>
-        <h2>{typedSubheading}{typedSubheading.length === subheadingText.length ? null : <span className="cursor"></span>}</h2>
+        <h1>{typedHeading}</h1>
+        <h2>{typedSubheading}</h2>
         <div className="buttons-container">
           <button className="dream-button">Draw my dream destination</button>
           <button className="dream-button">Describe my dream destination</button>

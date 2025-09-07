@@ -64,21 +64,6 @@ body, html {
   color: white; /* Changed to white text */
 }
 
-.cursor {
-  display: inline-block;
-  background-color: white;
-  width: 3px;
-  height: 1.1em; /* Adjust height based on font size */
-  margin-left: 5px;
-  animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
 .buttons-container {
   display: flex;
   justify-content: center;

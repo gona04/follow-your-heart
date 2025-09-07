@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import PerformanceMonitor from './components/PerformanceMonitor'
 
 // Lazy load components for better initial performance
 const HomePage = React.lazy(() => import('./pages/home-page/home-page.component'))
@@ -26,10 +25,7 @@ const LoadingFallback = () => (
 
 function App() {
   return (
-    <>
-      {/* Monitor Core Web Vitals in development */}
-      {import.meta.env.DEV && <PerformanceMonitor />}
-      
+    <>      
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -1,0 +1,12 @@
+/* General Styling */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --accent-color: #28a745;
+  --light-bg: #f8f9fa;
+  --dark-bg: #343a40;
+  --text-color: #212529;
+  --white: #ffffff;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

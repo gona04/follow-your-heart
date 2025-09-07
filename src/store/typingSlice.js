@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   headingText: "Follow Your Heart".trim(),
-  subheadingText: "Are you a beach person, mountain person, jungle person or...? ".trim(),
+  subheadingText: "Why limit yourself to being only a beach or a mountain person? When you can be so much more....".trim(),
   typedHeading: '',
   typedSubheading: '',
 };

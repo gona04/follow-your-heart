@@ -66,21 +66,22 @@ const HomePage = () => {
 
   return (
     <div className="carousel-container">
-      <div
-        className="carousel-slide"
-        style={{
-          backgroundImage: `url(${images[currentImageIndex]})`,
-          opacity: 1,
-        }}
-      >
-        <div className="image-overlay"></div>
-      </div>
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={`carousel-slide ${index === currentImageIndex ? 'active' : ''}`}
+          style={{
+            backgroundImage: `url(${image})`,
+          }}
+        ></div>
+      ))}
+      <div className="image-overlay"></div>
       <div className="content">
         <h1>{typedHeading}</h1>
         <h2>{typedSubheading}</h2>
         <div className="buttons-container">
           <button className="dream-button">Draw my dream destination</button>
-          <button className="dream-button">Describe my dream destination</button>
+          <button className="dream-button">Brain storm you dream travel</button>
         </div>
       </div>
     </div>

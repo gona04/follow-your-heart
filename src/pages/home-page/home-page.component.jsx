@@ -4,7 +4,6 @@ import { nextImage } from '../../store/carouselSlice';
 import './home-page.styles.css';
 import { resetTyping, typeHeadingChar, typeSubheadingChar } from '../../store/typingSlice';
 import { useNavigate } from 'react-router-dom';
-import ImagePreloader from '../../components/ImagePreloader';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -73,13 +72,7 @@ const HomePage = () => {
   };
 
   return (
-    <>
-      {/* Preload images with first image as priority for LCP */}
-      <ImagePreloader 
-        images={images} 
-        priority={[images[currentImageIndex]]} 
-      />
-      
+    <>      
       <div className="carousel-container">
         {images.map((image, index) => (
           <div

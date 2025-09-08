@@ -9,13 +9,13 @@
     <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
     
-    <!-- Preload critical images for LCP optimization -->
-    <link rel="preload" href="/images/image1.webp" as="image" type="image/webp" fetchpriority="high">
-    <link rel="preload" href="/images/image2.webp" as="image" type="image/webp">
-    <link rel="preload" href="/images/image3.webp" as="image" type="image/webp">
-    <link rel="preload" href="/images/image4.webp" as="image" type="image/webp">
+    <!-- Load font asynchronously to avoid render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"></noscript>
+    
+    <!-- Preload the main module for faster script loading -->
+    <link rel="modulepreload" href="data:text/jsx;base64,aW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JwppbXBvcnQgUmVhY3RET00gZnJvbSAncmVhY3QtZG9tL2NsaWVudCcKaW1wb3J0IHsgUHJvdmlkZXIgfSBmcm9tICdyZWFjdC1yZWR1eCc7CmltcG9ydCBzdG9yZSBmcm9tICcuL3N0b3JlJzsKaW1wb3J0IEFwcCBmcm9tICcuL0FwcC5qc3gnCmltcG9ydCAnLi9pbmRleC5jc3MnCmltcG9ydCB7IEJyb3dzZXJSb3V0ZXIgfSBmcm9tICdyZWFjdC1yb3V0ZXItZG9tJzsKClJlYWN0RE9NLmNyZWF0ZVJvb3QoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Jvb3QnKSkucmVuZGVyKAogIDxSZWFjdC5TdHJpY3RNb2RlPgogICAgPFByb3ZpZGVyIHN0b3JlPXtzdG9yZX0+CiAgICAgIDxCcm93c2VyUm91dGVyPgogICAgICAgIDxBcHAgLz4KICAgICAgPC9Ccm93c2VyUm91dGVyPgogICAgPC9Qcm92aWRlcj4KICA8L1JlYWN0LlN0cmljdE1vZGU+LAopCg==">
     
     <!-- Critical CSS inlined for faster initial render -->
     <style>
@@ -30,7 +30,7 @@
         --white: #ffffff;
         --border-radius: 8px;
         --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        --font-family: 'Poiret One', cursive;
+        --font-family: 'Poiret One', 'Georgia', 'Times New Roman', serif;
       }
       
       /* Critical reset and base styles */
@@ -66,14 +66,6 @@
         width: 100vw;
         height: 100vh;
         overflow: hidden;
-      }
-      
-      /* Preload all carousel images invisibly */
-      .carousel-container::before {
-        content: '';
-        position: absolute;
-        top: -9999px;
-        background-image: url('/images/image1.webp'), url('/images/image2.webp'), url('/images/image3.webp'), url('/images/image4.webp');
       }
       
       .carousel-slide {
@@ -263,10 +255,10 @@
         document.head.appendChild(styleEl);
       });
     </script>
-    <script type="module" crossorigin src="/assets/index-cqVgEavT.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/react-vendor-BeLYVh7p.js">
-    <link rel="modulepreload" crossorigin href="/assets/redux-vendor-D38MT8HC.js">
-    <link rel="modulepreload" crossorigin href="/assets/router-vendor-oGtHbYlf.js">
+    <script type="module" crossorigin src="/assets/index-NV3M9gM7.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/react-vendor-BkI6B9jc.js">
+    <link rel="modulepreload" crossorigin href="/assets/redux-vendor-05RKXRx-.js">
+    <link rel="modulepreload" crossorigin href="/assets/router-vendor-xzHoNWgt.js">
     <link rel="stylesheet" crossorigin href="/assets/index-Ds0Gt5nF.css">
   </head>
   <body>

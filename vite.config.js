@@ -14,6 +14,10 @@ export default defineConfig({
     // Enable chunk splitting for better caching
     rollupOptions: {
       output: {
+        // Add timestamp for cache busting
+        chunkFileNames: 'assets/[name]-[hash]-' + Date.now() + '.js',
+        entryFileNames: 'assets/[name]-[hash]-' + Date.now() + '.js',
+        assetFileNames: 'assets/[name]-[hash]-' + Date.now() + '.[ext]',
         // Simple, safe chunking that preserves React dependencies
         manualChunks: {
           // Keep React + React-DOM together (critical for hooks like useSyncExternalStore)

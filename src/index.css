@@ -2,5 +2,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Poiret One', cursive;
+  font-family: 'Poiret One', Georgia, 'Times New Roman', serif;
+}
+
+/* Progressive font loading classes will override this */
+.font-loading * {
+  font-family: Georgia, 'Times New Roman', serif !important;
 }

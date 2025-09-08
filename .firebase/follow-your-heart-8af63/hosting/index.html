@@ -10,9 +10,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Load font asynchronously to avoid render blocking -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"></noscript>
+    <!-- Reliable Poiret One font loading with font-display optimization -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poiret+One:wght@400&display=swap">
+    
+    <!-- Additional preload for faster loading with display=swap -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poiret+One:wght@400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poiret+One:wght@400&display=swap"></noscript>
+    
+    <!-- Simple, reliable Poiret One font loading -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poiret+One:wght@400&display=swap');
+      /* Import Poiret One with optimized font-display */
+      /* Font-face override with optimized display and fallback metrics */
+      @font-face {
+        font-family: 'Poiret One';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap; /* Ensures immediate text rendering */
+        src: local('Poiret One'), local('PoiretOne-Regular'),
+             url(https://fonts.gstatic.com/s/poiretone/v16/UqyVK80NJXN4zfRgbdfbk5lWVscxdKE.woff2) format('woff2');
+        /* Font metric overrides to prevent layout shift */
+        ascent-override: 85%;
+        descent-override: 20%;
+        line-gap-override: 0%;
+        size-adjust: 100%;
+      }
+      /* Use only Poiret One font throughout */
+      :root {
+        --font-primary: 'Poiret One', cursive;
+      }
+      /* Apply Poiret One to everything with font-display optimization */
+      * {
+        font-family: var(--font-primary) !important;
+        font-display: swap; /* Ensures text is always visible */
+      }
+      body, html {
+        font-family: var(--font-primary) !important;
+        font-display: swap;
+      }
+    </style>
     
     <!-- Preload the main module for faster script loading -->
     <link rel="modulepreload" href="data:text/jsx;base64,aW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JwppbXBvcnQgUmVhY3RET00gZnJvbSAncmVhY3QtZG9tL2NsaWVudCcKaW1wb3J0IHsgUHJvdmlkZXIgfSBmcm9tICdyZWFjdC1yZWR1eCc7CmltcG9ydCBzdG9yZSBmcm9tICcuL3N0b3JlJzsKaW1wb3J0IEFwcCBmcm9tICcuL0FwcC5qc3gnCmltcG9ydCAnLi9pbmRleC5jc3MnCmltcG9ydCB7IEJyb3dzZXJSb3V0ZXIgfSBmcm9tICdyZWFjdC1yb3V0ZXItZG9tJzsKClJlYWN0RE9NLmNyZWF0ZVJvb3QoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Jvb3QnKSkucmVuZGVyKAogIDxSZWFjdC5TdHJpY3RNb2RlPgogICAgPFByb3ZpZGVyIHN0b3JlPXtzdG9yZX0+CiAgICAgIDxCcm93c2VyUm91dGVyPgogICAgICAgIDxBcHAgLz4KICAgICAgPC9Ccm93c2VyUm91dGVyPgogICAgPC9Qcm92aWRlcj4KICA8L1JlYWN0LlN0cmljdE1vZGU+LAopCg==">
@@ -30,7 +66,7 @@
         --white: #ffffff;
         --border-radius: 8px;
         --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        --font-family: 'Poiret One', 'Georgia', 'Times New Roman', serif;
+        --font-family: 'Poiret One', cursive;
       }
       
       /* Critical reset and base styles */
@@ -46,9 +82,9 @@
         height: 100%;
         overflow: hidden;
         font-family: var(--font-family);
+        font-display: swap; /* Ensures text renders immediately */
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
-        font-display: swap;
       }
       
       /* Ensure all buttons and inputs use consistent font */
@@ -255,13 +291,99 @@
         document.head.appendChild(styleEl);
       });
     </script>
-    <script type="module" crossorigin src="/assets/index-BSjf09XM-1757303141595.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/react-vendor-BkI6B9jc-1757303141595.js">
-    <link rel="modulepreload" crossorigin href="/assets/redux-vendor-Cw92rkgz-1757303141595.js">
-    <link rel="modulepreload" crossorigin href="/assets/router-vendor-CeO6LEJo-1757303141595.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Ds0Gt5nF-1757303141595.css">
+    <script type="module" crossorigin src="/assets/index-CfuBjHlS-1757308304962.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/react-vendor-BkI6B9jc-1757308304962.js">
+    <link rel="modulepreload" crossorigin href="/assets/redux-vendor-B9g8ZIpI-1757308304962.js">
+    <link rel="modulepreload" crossorigin href="/assets/router-vendor-YXxlXgKA-1757308304962.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CSTGMz0_-1757308304962.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant FCP content - renders immediately with system fonts -->
+      <div id="fcp-loader" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-family: 'Poiret One', cursive;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      ">
+        <h1 style="
+          font-size: clamp(2rem, 8vw, 4rem);
+          font-weight: bold;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+          text-align: center;
+          line-height: 1.2;
+          padding: 0 20px;
+        ">Follow Your Heart</h1>
+        <h2 style="
+          font-size: clamp(1rem, 4vw, 1.5rem);
+          font-weight: normal;
+          margin-bottom: 2rem;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+          text-align: center;
+          padding: 0 20px;
+        ">Your journey begins here...</h2>
+        <div style="
+          width: 40px;
+          height: 40px;
+          border: 4px solid rgba(255, 255, 255, 0.3);
+          border-top: 4px solid white;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        "></div>
+      </div>
+    </div>
+    
+    <!-- Remove FCP loader when React loads -->
+    <script>
+      (function() {
+        function hideLoader() {
+          const loader = document.getElementById('fcp-loader');
+          const root = document.getElementById('root');
+          
+          // Check if React has rendered
+          if (root && root.children.length > 1) {
+            if (loader) {
+              loader.style.opacity = '0';
+              setTimeout(() => loader.remove(), 300);
+            }
+            return true;
+          }
+          return false;
+        }
+        
+        // Check periodically
+        let attempts = 0;
+        const checkInterval = setInterval(() => {
+          if (hideLoader() || attempts++ > 100) {
+            clearInterval(checkInterval);
+          }
+        }, 50);
+        
+        // Fallback removal after 5 seconds
+        setTimeout(() => {
+          clearInterval(checkInterval);
+          hideLoader();
+        }, 5000);
+      })();
+    </script>
+    
+    <!-- Inline spinner animation -->
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </body>
 </html>

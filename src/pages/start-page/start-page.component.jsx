@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { resetTyping, typeHeadingChar, typeSubheadingChar } from '../../store/typingSlice';
 import './start-page.styles.css';
 
 function StartPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { headingText, subheadingText, typedHeading, typedSubheading } = useSelector((state) => state.typing);
 
     // Use a ref to store the latest typedHeading and typedSubheading
@@ -55,6 +57,15 @@ function StartPage() {
         };
     }, [dispatch, headingText, subheadingText]);
 
+    // Navigation handlers
+    const handleMapsClick = () => {
+        navigate('/maps');
+    };
+
+    const handleBrainstormClick = () => {
+        navigate('/brainstorming-dream-travel');
+    };
+
     return (
        <div className='heart-container'>
          <div className="typing-content">
@@ -96,8 +107,8 @@ function StartPage() {
            </div>
          </div>
          <div className='button-container'>
-                <button className='btn-default'> Choose destination through world map </button>
-                <button className='btn-default'> Brain Storm Your Trip Plans </button>
+                <button className='btn-default' onClick={handleMapsClick}> Choose destination through world map </button>
+                <button className='btn-default' onClick={handleBrainstormClick}> Brain Storm Your Trip Plans </button>
          </div>
        </div>
     )

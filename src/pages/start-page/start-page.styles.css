@@ -15,7 +15,7 @@
     text-align: center;
     z-index: 20;
     flex-shrink: 0;
-    margin-bottom: 5vh;
+    /* margin-bottom: 5vh; */
 }
 
 .typing-heading {
@@ -185,7 +185,7 @@
         height: 270px;
         margin: 1.5rem;
     }
-     .button-container {
+    .button-container {
         display: flex;
         flex-direction: column;
     }
@@ -222,5 +222,4 @@
         height: 450px;
         margin: 2.5rem;
     }
-}
 }

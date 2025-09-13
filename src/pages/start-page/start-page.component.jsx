@@ -1,11 +1,68 @@
+import React, { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetTyping, typeHeadingChar, typeSubheadingChar } from '../../store/typingSlice';
 import './start-page.styles.css';
 
 function StartPage() {
+    const dispatch = useDispatch();
+    const { headingText, subheadingText, typedHeading, typedSubheading } = useSelector((state) => state.typing);
+
+    // Use a ref to store the latest typedHeading and typedSubheading
+    const typedStateRef = useRef({ typedHeading, typedSubheading });
+
+    useEffect(() => {
+        typedStateRef.current = { typedHeading, typedSubheading };
+    }, [typedHeading, typedSubheading]);
+
+    // Combined effect for typing the heading and then the subheading
+    useEffect(() => {
+        dispatch(resetTyping()); // Reset typing state on component mount
+
+        let hIntervalId;
+        let sIntervalId;
+
+        const startTypingHeading = () => {
+            hIntervalId = setInterval(() => {
+                // Access latest typedHeading from ref
+                if (typedStateRef.current.typedHeading.length < headingText.length) {
+                    dispatch(typeHeadingChar());
+                } else {
+                    clearInterval(hIntervalId);
+                    // Delay before starting subheading typing
+                    setTimeout(() => {
+                        startTypingSubheading();
+                    }, 500); // Small delay after heading is done
+                }
+            }, 100); // Typing speed for heading
+        };
+
+        const startTypingSubheading = () => {
+            sIntervalId = setInterval(() => {
+                // Access latest typedSubheading from ref
+                if (typedStateRef.current.typedSubheading.length < subheadingText.length) {
+                    dispatch(typeSubheadingChar());
+                } else {
+                    clearInterval(sIntervalId);
+                }
+            }, 70); // Typing speed for subheading
+        };
+
+        startTypingHeading();
+
+        return () => {
+            clearInterval(hIntervalId);
+            clearInterval(sIntervalId);
+        };
+    }, [dispatch, headingText, subheadingText]);
+
     return (
        <div className='heart-container'>
+         <div className="typing-content">
+           <h1 className="typing-heading">{typedHeading}</h1>
+           <h2 className="typing-subheading">{typedSubheading}</h2>
+         </div>
          <div id="heart">
            <div className='compass'>
-              {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M528 320C528 205.1 434.9 112 320 112C205.1 112 112 205.1 112 320C112 434.9 205.1 528 320 528C434.9 528 528 434.9 528 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320zM370.7 389.1L226.4 444.6C207 452.1 187.9 433 195.4 413.6L250.9 269.3C254.2 260.8 260.8 254.2 269.3 250.9L413.6 195.4C433 187.9 452.1 207 444.6 226.4L389.1 370.7C385.8 379.2 379.2 385.8 370.7 389.1zM352 320C352 302.3 337.7 288 320 288C302.3 288 288 302.3 288 320C288 337.7 302.3 352 320 352C337.7 352 352 337.7 352 320z"/></svg> */}
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 xmlSpace="preserve" 

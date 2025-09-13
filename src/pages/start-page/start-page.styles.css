@@ -1,11 +1,11 @@
 .heart-container {
     width: 100vw;
-    height:100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background: #85a6c9; */
-    background-color: rgba(13, 1, 1, 0.896);
+    background: linear-gradient(135deg, rgba(13, 1, 1, 0.95), rgba(25, 5, 8, 0.98));
+    overflow: hidden;
 }
 #heart { 
     position: relative; 
@@ -14,6 +14,7 @@
     max-width: 85vh;
     max-height: 76.5vh;
     animation: heartbeat 3s ease-in-out infinite;
+    filter: drop-shadow(0 8px 32px rgba(186, 92, 108, 0.3));
 } 
 
 #heart:before, #heart:after { 
@@ -23,7 +24,7 @@
     top: 0; 
     width: 50%; 
     height: 100%; 
-    background-color: rgb(186, 92, 108);
+    background: linear-gradient(145deg, rgb(186, 92, 108), rgb(159, 78, 95));
     border-radius: 50% 50% 0 0; 
     transform: rotate(-45deg); 
     transform-origin: 0 100%; 
@@ -39,21 +40,27 @@
 @keyframes heartbeat {
     0% {
         transform: scale(1);
+        filter: drop-shadow(0 8px 32px rgba(186, 92, 108, 0.3));
     }
     15% {
-        transform: scale(1.05);
+        transform: scale(1.02);
+        filter: drop-shadow(0 12px 40px rgba(186, 92, 108, 0.4));
     }
     30% {
         transform: scale(1);
+        filter: drop-shadow(0 8px 32px rgba(186, 92, 108, 0.3));
     }
     45% {
-        transform: scale(1.05);
+        transform: scale(1.02);
+        filter: drop-shadow(0 12px 40px rgba(186, 92, 108, 0.4));
     }
     75% {
         transform: scale(1);
+        filter: drop-shadow(0 8px 32px rgba(186, 92, 108, 0.3));
     }
     100% {
         transform: scale(1);
+        filter: drop-shadow(0 8px 32px rgba(186, 92, 108, 0.3));
     }
 }
 
@@ -74,8 +81,8 @@
 .compass svg {
     width: 100%;
     height: 100%;
-    fill: #2c3e50;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    fill: #34495e;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) brightness(1.1);
 }
 
 /* Compass needle animations - Realistic subtle movement */

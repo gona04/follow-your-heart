@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
+import StartPage from './pages/start-page/start-page.component'
 
 // Lazy load components for better initial performance
 const HomePage = React.lazy(() => import('./pages/home-page/home-page.component'))
@@ -28,7 +29,7 @@ function App() {
     <>      
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<StartPage />} />
           <Route path="/brainstorming-dream-travel" element={<BrainstormingDreamTravel />} />
         </Routes>
       </Suspense>

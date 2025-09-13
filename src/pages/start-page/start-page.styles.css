@@ -1,0 +1,98 @@
+.heart-container {
+    width: 100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #85a6c9;
+}
+#heart { 
+    position: relative; 
+    width: 80vw; 
+    height: 72vw; 
+    max-width: 85vh;
+    max-height: 76.5vh;
+    animation: heartbeat 3s ease-in-out infinite;
+} 
+
+#heart:before, #heart:after { 
+    position: absolute; 
+    content: ""; 
+    left: 50%; 
+    top: 0; 
+    width: 50%; 
+    height: 100%; 
+    background: #c44f4f; 
+    border-radius: 50% 50% 0 0; 
+    transform: rotate(-45deg); 
+    transform-origin: 0 100%; 
+} 
+
+#heart:after { 
+    left: 0; 
+    transform: rotate(45deg); 
+    transform-origin: 100% 100%; 
+}
+
+/* Heartbeat pulse animation */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(1.05);
+    }
+    30% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.05);
+    }
+    75% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Compass styles - centered within the heart */
+.compass {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.compass svg {
+    width: 100%;
+    height: 100%;
+    fill: #2c3e50;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Compass needle animations - Realistic subtle movement */
+.compass-needle-ne {
+    animation: compass-needle-subtle 6s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.compass-needle-sw {
+    animation: compass-needle-subtle 6s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* Subtle realistic compass movement - all needles move together */
+@keyframes compass-needle-subtle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    50% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+}

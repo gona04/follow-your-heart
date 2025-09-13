@@ -95,6 +95,10 @@ function StartPage() {
               </svg>
            </div>
          </div>
+         <div className='button-container'>
+                <button className='btn-default'> Choose destination through world map </button>
+                <button className='btn-default'> Brain Storm Your Trip Plans </button>
+         </div>
        </div>
     )
 }

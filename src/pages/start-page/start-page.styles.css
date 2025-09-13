@@ -4,7 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #85a6c9;
+    /* background: #85a6c9; */
+    background-color: rgba(13, 1, 1, 0.896);
 }
 #heart { 
     position: relative; 
@@ -22,7 +23,7 @@
     top: 0; 
     width: 50%; 
     height: 100%; 
-    background: #c44f4f; 
+    background-color: rgb(186, 92, 108);
     border-radius: 50% 50% 0 0; 
     transform: rotate(-45deg); 
     transform-origin: 0 100%; 

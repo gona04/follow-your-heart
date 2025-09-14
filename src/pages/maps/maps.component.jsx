@@ -185,7 +185,12 @@ function Maps() {
           {/* Australia/Oceania */}
           <g
             fill="#dda0dd"
+            className="continent oceania"
             transform="translate(880.000000,500.000000) scale(0.300000,-0.300000)"
+             onClick={() => handleContinentClick("Australia")}
+            onMouseEnter={() => handleContinentHover("Australia")}
+            onMouseLeave={handleContinentLeave}
+            data-continent="Australia"
           >
             <path
               d="M434.071,449.363l-5.785,0.82c-1.182,0.18-2.396,0.115-3.569-0.156l-13.276-3.142
@@ -228,52 +233,7 @@ function Maps() {
             data-continent="Antarctica"
           />
 
-          {/* Major Islands */}
-          <circle
-            cx="450"
-            cy="180"
-            r="8"
-            className="continent europe"
-            onClick={() => handleContinentClick("Europe")}
-            onMouseEnter={() => handleContinentHover("Europe")}
-            onMouseLeave={handleContinentLeave}
-          />
-          <circle
-            cx="480"
-            cy="350"
-            r="6"
-            className="continent africa"
-            onClick={() => handleContinentClick("Africa")}
-            onMouseEnter={() => handleContinentHover("Africa")}
-            onMouseLeave={handleContinentLeave}
-          />
-          <circle
-            cx="950"
-            cy="180"
-            r="12"
-            className="continent asia"
-            onClick={() => handleContinentClick("Asia")}
-            onMouseEnter={() => handleContinentHover("Asia")}
-            onMouseLeave={handleContinentLeave}
-          />
-          <circle
-            cx="750"
-            cy="280"
-            r="10"
-            className="continent asia"
-            onClick={() => handleContinentClick("Asia")}
-            onMouseEnter={() => handleContinentHover("Asia")}
-            onMouseLeave={handleContinentLeave}
-          />
-          <circle
-            cx="950"
-            cy="450"
-            r="8"
-            className="continent oceania"
-            onClick={() => handleContinentClick("Oceania")}
-            onMouseEnter={() => handleContinentHover("Oceania")}
-            onMouseLeave={handleContinentLeave}
-          />
+         
         </svg>
       </div>
 

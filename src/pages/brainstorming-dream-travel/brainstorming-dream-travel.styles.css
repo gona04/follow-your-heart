@@ -21,6 +21,29 @@
   flex-shrink: 0;
 }
 
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #868484;
+}
+
+.selected-continent {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #d4af37;
+  font-weight: 500;
+  background: rgba(212, 175, 55, 0.1);
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
 .back-button {
   position: absolute;
   left: 20px;

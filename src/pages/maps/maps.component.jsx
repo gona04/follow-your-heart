@@ -145,6 +145,10 @@ function Maps() {
             fill="#ffeaa7"
             stroke="none"
             className="continent asia"
+            onClick={() => handleContinentClick("Asia")}
+            onMouseEnter={() => handleContinentHover("Asia")}
+            onMouseLeave={handleContinentLeave}
+            data-continent="Asia"
           >
             <path d="M2804 6381 c-43 -11 -54 -19 -54 -41 0 -20 11 -25 80 -34 19 -2 87 -13 150 -24 63 -11 118 -18 123 -15 29 18 -23 63 -74 63 -24 0 -57 9 -82 24 -49 28 -99 37 -143 27z" />{" "}
             <path d="M3170 6279 c-22 -41 -7 -49 85 -46 74 2 85 4 85 20 0 21 -27 32 -102 41 -51 5 -58 4 -68 -15z" />{" "}

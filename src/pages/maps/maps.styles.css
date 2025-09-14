@@ -73,29 +73,15 @@
 
 .continent {
     cursor: pointer;
-    stroke: rgba(255, 255, 255, 0.4);
-    stroke-width: 1.5;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.continent:hover {
-    stroke: rgba(212, 175, 55, 0.9);
-    stroke-width: 2.5;
-    transform: scale(1.02);
-    filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
+/* North America and South America - cursor pointer only */
+.north-america,
+.south-america {
+    cursor: pointer;
 }
 
 /* Enhanced continent-specific colors */
-.north-america {
-    fill: #ff6b6b;
-    fill-opacity: 0.9;
-}
-
-.south-america {
-    fill: #4ecdc4;
-    fill-opacity: 0.9;
-}
 
 .europe {
     fill: #45b7d1;
@@ -120,10 +106,6 @@
 .antarctica {
     fill: #a0c4ff;
     fill-opacity: 0.9;
-}
-
-.continent:hover {
-    fill-opacity: 1;
 }
 
 .continent-info {

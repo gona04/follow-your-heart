@@ -21,8 +21,17 @@ function Maps() {
     setHoveredContinent("");
   };
 
+  const handleBackToHome = () => {
+    navigate("/");
+  };
+
   return (
     <div className="maps-container">
+      <div className="back-to-home-container">
+        <button className="back-to-home-btn" onClick={handleBackToHome}>
+          ← Back to Homepage
+        </button>
+      </div>
       <div className="maps-header">
         <h1>Choose Your Dream Destination</h1>
         <p>Click on a continent to explore travel options</p>
@@ -124,6 +133,10 @@ function Maps() {
             }}
             className="continent africa"
             d="M201.56 19.495l-87.79 9.131-73.745 94.814v52.676l56.186 61.805 64.615-13.344 49.164 9.832-10.535 37.926 33.711 61.103-16.855 42.842 39.79 116.225 53.62-8.768 49.164-55.484 4.213-38.629 31.605-23.879-6.322-69.531 83.594-106.994-51.989 7.263-79.363-138.359-125.016-8.428-14.046-30.2zm252.346 319.8l-14.402 20.86-13.408.496c-11.849 24.321-12.598 38.019-13.907 66.547l17.383 4.471 21.852-52.147 2.482-40.226z"
+         onClick={() => handleContinentClick("Africa")}
+            onMouseEnter={() => handleContinentHover("Africa")}
+            onMouseLeave={handleContinentLeave}
+            data-continent="Africa"
           />
 
           {/* Asia */}
@@ -224,14 +237,14 @@ function Maps() {
           </g>
 
           {/* Antarctica */}
-          <path
+          {/* <path
             className="continent antarctica"
             d="M100 520 L1100 520 C1070 550 1000 557 850 552 C700 540 550 522 400 498 C250 468 120 432 100 520 Z"
             onClick={() => handleContinentClick("Antarctica")}
             onMouseEnter={() => handleContinentHover("Antarctica")}
             onMouseLeave={handleContinentLeave}
             data-continent="Antarctica"
-          />
+          /> */}
 
          
         </svg>
@@ -263,12 +276,12 @@ function Maps() {
             </div>
             <div className="legend-item">
               <span className="legend-color oceania-color"></span>
-              <span>Oceania</span>
+              <span>Australia</span>
             </div>
-            <div className="legend-item">
+            {/* <div className="legend-item">
               <span className="legend-color antarctica-color"></span>
               <span>Antarctica</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

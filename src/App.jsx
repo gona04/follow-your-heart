@@ -5,7 +5,6 @@ import StartPage from './pages/start-page/start-page.component'
 import Maps from './pages/maps/maps.component'
 
 // Lazy load components for better initial performance
-const HomePage = React.lazy(() => import('./pages/home-page/home-page.component'))
 const BrainstormingDreamTravel = React.lazy(() => import('./pages/brainstorming-dream-travel/brainstorming-dream-travel.component'))
 
 // Loading component

@@ -203,7 +203,7 @@ function Maps() {
           <g
             fill="#dda0dd"
             className="continent oceania"
-            transform="translate(880.000000,500.000000) scale(0.300000,-0.300000)"
+            transform="translate(910.000000,400.000000) scale(0.300000,0.300000)"
              onClick={() => handleContinentClick("Australia")}
             onMouseEnter={() => handleContinentHover("Australia")}
             onMouseLeave={handleContinentLeave}

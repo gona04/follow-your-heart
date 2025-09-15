@@ -16,6 +16,25 @@ const BrainstormingDreamTravel = () => {
       : "🌍 Welcome to your dream travel brainstorming session! Tell me about the destination you have in mind.";
     
     setMessages([{ text: welcomeMessage, sender: 'ai' }]);
+
+    // Handle mobile viewport changes for keyboard
+    const handleViewportChange = () => {
+      // Force recalculation of viewport height
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    // Set initial viewport height
+    handleViewportChange();
+
+    // Listen for viewport changes (keyboard open/close)
+    window.addEventListener('resize', handleViewportChange);
+    window.addEventListener('orientationchange', handleViewportChange);
+
+    return () => {
+      window.removeEventListener('resize', handleViewportChange);
+      window.removeEventListener('orientationchange', handleViewportChange);
+    };
   }, [selectedContinent]);
 
   const handleSendMessage = () => {
@@ -46,6 +65,18 @@ const BrainstormingDreamTravel = () => {
     }
   };
 
+  const handleInputFocus = () => {
+    // On mobile, scroll the input into view when focused
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        const inputElement = document.querySelector('.chat-input-area input');
+        if (inputElement) {
+          inputElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300); // Delay to allow keyboard animation
+    }
+  };
+
   return (
     <div className="brainstorming-dream-travel-container">
       <div className="chat-header">
@@ -71,6 +102,7 @@ const BrainstormingDreamTravel = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+            onFocus={handleInputFocus}
             placeholder="Ask me about your dream destination..."
           />
           <button onClick={handleSendMessage} className="send-button">

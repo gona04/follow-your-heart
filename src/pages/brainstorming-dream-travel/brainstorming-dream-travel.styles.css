@@ -1,11 +1,14 @@
 .brainstorming-dream-travel-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100); /* Use JS-calculated viewport height */
   width: 100vw;
   background-color: #f7f7f7; /* Lighter background for a modern feel */
   font-family: 'Poiret One', cursive;
   overflow: hidden;
+  /* Add support for mobile viewport */
+  position: relative;
 }
 
 .chat-header {
@@ -103,6 +106,12 @@
   border-top: 1px solid #e0e0e0;
   flex-shrink: 0;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  /* Ensure input area stays visible on mobile */
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  /* Add safe area padding for devices with notches */
+  padding-bottom: max(15px, env(safe-area-inset-bottom));
 }
 
 .input-with-button {
@@ -111,6 +120,51 @@
   align-items: center;
   width: 70vw; /* Adjust width as needed, same as chat container for alignment */
   max-width: 900px; /* Optional: max width for larger screens */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .brainstorming-dream-travel-container {
+    /* Use viewport height units that work better on mobile */
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    max-height: 100vh;
+    max-height: calc(var(--vh, 1vh) * 100);
+  }
+  
+  .chat-input-area {
+    padding: 12px 15px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    /* Force the input area to stay at the bottom */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* Prevent zoom on input focus for iOS */
+    transform: translateZ(0);
+  }
+  
+  .input-with-button {
+    width: calc(100vw - 30px);
+    max-width: none;
+  }
+  
+  .chat-input-area input {
+    /* Prevent zoom on focus for iOS */
+    font-size: 16px;
+    transform: translateZ(0);
+  }
+  
+  .chat-messages {
+    /* Add bottom padding to prevent overlap with fixed input */
+    padding-bottom: 80px;
+    /* Ensure scrolling works properly */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Improve scroll performance */
+    transform: translateZ(0);
+  }
 }
 
 .chat-input-area input {

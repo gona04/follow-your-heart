@@ -95,32 +95,7 @@
         height: 100vh;
       }
       
-
-      
-      /* Prevent layout shifts during loading */
-      .loading-skeleton {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-      }
-      
-      @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-      }
-      
-      /* Responsive critical styles */
-      @media (max-width: 640px) {
-        /* Mobile optimizations for loading screen */
-        #fcp-loader h1 { font-size: 2.5rem; }
-        #fcp-loader h2 { font-size: 1.2rem; }
-      }
-      
-      /* Extra small mobile devices */
-      @media (max-width: 480px) {
-        #fcp-loader h1 { font-size: 2rem; }
-        #fcp-loader h2 { font-size: 1rem; }
-      }
+     
     </style>
     
     <!-- Defer non-critical CSS loading -->
@@ -141,91 +116,11 @@
   </head>
   <body>
     <div id="root">
-      <!-- Instant FCP content - renders immediately with system fonts -->
-      <div id="fcp-loader" style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-family: 'Poiret One', cursive;
-        z-index: 9999;
-        transition: opacity 0.3s ease;
-      ">
-        <h1 style="
-          font-size: clamp(2rem, 8vw, 4rem);
-          font-weight: bold;
-          margin-bottom: 1rem;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-          text-align: center;
-          line-height: 1.2;
-          padding: 0 20px;
-        ">Follow Your Heart</h1>
-        <h2 style="
-          font-size: clamp(1rem, 4vw, 1.5rem);
-          font-weight: normal;
-          margin-bottom: 2rem;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-          text-align: center;
-          padding: 0 20px;
-        ">Your journey begins here...</h2>
-        <div style="
-          width: 40px;
-          height: 40px;
-          border: 4px solid rgba(255, 255, 255, 0.3);
-          border-top: 4px solid white;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        "></div>
-      </div>
+    
     </div>
     
-    <!-- Remove FCP loader when React loads -->
-    <script>
-      (function() {
-        function hideLoader() {
-          const loader = document.getElementById('fcp-loader');
-          const root = document.getElementById('root');
-          
-          // Check if React has rendered
-          if (root && root.children.length > 1) {
-            if (loader) {
-              loader.style.opacity = '0';
-              setTimeout(() => loader.remove(), 300);
-            }
-            return true;
-          }
-          return false;
-        }
-        
-        // Check periodically
-        let attempts = 0;
-        const checkInterval = setInterval(() => {
-          if (hideLoader() || attempts++ > 100) {
-            clearInterval(checkInterval);
-          }
-        }, 50);
-        
-        // Fallback removal after 5 seconds
-        setTimeout(() => {
-          clearInterval(checkInterval);
-          hideLoader();
-        }, 5000);
-      })();
-    </script>
+   
     
-    <!-- Inline spinner animation -->
-    <style>
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    </style>
+  
   </body>
 </html>

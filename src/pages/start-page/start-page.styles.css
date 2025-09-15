@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 25%, #dee2e6 50%, #ced4da 100%);
-    padding: 2rem;
+    /* padding: 2rem; */
     box-sizing: border-box;
 }
 
@@ -27,7 +27,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0 0 1rem 0;
+    /* margin: 0 0 1rem 0; */
     text-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
     opacity: 0;
     animation: fadeInText 1s ease-in 0.5s forwards;
@@ -251,13 +251,12 @@
 }
 
 @media (min-width: 1200px) {
-    .typing-content {
+    /* .typing-content {
         margin-bottom: 6vh;
-    }
+    } */
     
     #heart {
-        width: 500px;
-        height: 450px;
-        margin: 2.5rem;
+        width: 366px;
+        height: 330px;
     }
 }

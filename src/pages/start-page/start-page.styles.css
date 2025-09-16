@@ -6,7 +6,6 @@
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 25%, #dee2e6 50%, #ced4da 100%);
-    /* padding: 2rem; */
     box-sizing: border-box;
 }
 
@@ -15,11 +14,9 @@
     text-align: center;
     z-index: 20;
     flex-shrink: 0;
-    /* margin-bottom: 5vh; */
 }
 
 .typing-heading {
-    /* font-family: 'Georgia', serif; */
     font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 300;
     letter-spacing: 0.05em;
@@ -27,14 +24,12 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* margin: 0 0 1rem 0; */
     text-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
     opacity: 0;
     animation: fadeInText 1s ease-in 0.5s forwards;
 }
 
 .typing-subheading {
-    /* font-family: 'Helvetica Neue', sans-serif; */
     font-size: clamp(1rem, 3vw, 1.4rem);
     font-weight: 300;
     letter-spacing: 0.02em;

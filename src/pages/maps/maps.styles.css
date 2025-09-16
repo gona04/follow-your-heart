@@ -58,19 +58,60 @@
     margin: 0;
 }
 
-.continent-tooltip {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(139, 69, 19, 0.9);
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+/* Travel Preference Selector */
+.preference-selector {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.preference-selector label {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(139, 69, 19, 0.9);
+}
+
+.category-dropdown {
+    padding: 0.75rem 1.25rem;
     font-size: 1rem;
-    font-weight: 500;
-    margin-top: 1rem;
-    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+    font-family: 'Helvetica Neue', sans-serif;
+    border: 2px solid rgba(139, 69, 19, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: rgba(52, 58, 64, 0.9);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 280px;
+}
+
+.category-dropdown:focus {
+    outline: none;
+    border-color: rgba(139, 69, 19, 0.6);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+.available-continents {
+    margin: 1rem 0;
+    padding: 1rem 1.5rem;
+    background: rgba(139, 69, 19, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.available-continents p {
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    color: rgba(52, 58, 64, 0.8);
+}
+
+.continent-list {
+    font-weight: 600;
+    color: rgba(139, 69, 19, 0.9);
 }
 
 .world-map-container {
@@ -97,16 +138,38 @@
 }
 
 .continent {
-    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* North America and South America - cursor pointer only */
-.north-america,
-.south-america {
+/* Continent States */
+.continent.available {
     cursor: pointer;
+    filter: brightness(1.1) saturate(1.2);
+}
+
+.continent.available:hover,
+.continent.hovered {
+    cursor: pointer;
+    filter: brightness(1.3) saturate(1.4) drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
+}
+
+.continent.unavailable {
+    cursor: not-allowed;
+    filter: grayscale(0.8) brightness(0.7);
+    opacity: 0.5;
 }
 
 /* Enhanced continent-specific colors */
+
+.north-america {
+    fill: #ff6b6b;
+    fill-opacity: 0.9;
+}
+
+.south-america {
+    fill: #4ecdc4;
+    fill-opacity: 0.9;
+}
 
 .europe {
     fill: #45b7d1;
@@ -191,11 +254,6 @@
     
     .world-map-container {
         padding: 1rem;
-    }
-    
-    .continent-tooltip {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
     }
     
     .legend-items {

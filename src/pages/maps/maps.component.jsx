@@ -1,28 +1,81 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { 
+  setSelectedCategory, 
+  setHoveredContinent, 
+  setSelectedContinent 
+} from "../../store/travelSlice";
 import "./maps.styles.css";
 
 function Maps() {
-  const [hoveredContinent, setHoveredContinent] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  
+  const {
+    selectedCategory,
+    categories,
+    availableContinents,
+    hoveredContinent
+  } = useSelector((state) => state.travel);
+
+  const handleCategorySelect = (event) => {
+    const category = event.target.value;
+    dispatch(setSelectedCategory(category));
+  };
 
   const handleContinentClick = (continentName) => {
-    // Navigate to brainstorming page with continent data
-    navigate("/brainstorming-dream-travel", {
-      state: { selectedContinent: continentName },
-    });
+    // Only allow clicks on available continents or when no category is selected
+    if (!selectedCategory || availableContinents.includes(continentName)) {
+      dispatch(setSelectedContinent(continentName));
+      
+      // Navigate to brainstorming page with both category and continent data
+      navigate("/brainstorming-dream-travel", {
+        state: { 
+          selectedCategory,
+          selectedContinent: continentName 
+        },
+      });
+    }
   };
 
   const handleContinentHover = (continentName) => {
-    setHoveredContinent(continentName);
+    // Only show hover effects for available continents or when no category is selected
+    if (!selectedCategory || availableContinents.includes(continentName)) {
+      dispatch(setHoveredContinent(continentName));
+    }
   };
 
   const handleContinentLeave = () => {
-    setHoveredContinent("");
+    dispatch(setHoveredContinent(""));
   };
 
   const handleBackToHome = () => {
     navigate("/");
+  };
+
+  const getContinentClass = (continentName) => {
+    let baseClass = `continent ${continentName.toLowerCase().replace(/\s+/g, '-')}`;
+    
+    if (!selectedCategory) {
+      // Default state - all continents are clickable
+      baseClass += " available";
+      if (hoveredContinent === continentName) {
+        baseClass += " hovered";
+      }
+      return baseClass;
+    }
+    
+    if (availableContinents.includes(continentName)) {
+      baseClass += " available";
+      if (hoveredContinent === continentName) {
+        baseClass += " hovered";
+      }
+    } else {
+      baseClass += " unavailable";
+    }
+    
+    return baseClass;
   };
 
   return (
@@ -32,12 +85,38 @@ function Maps() {
           ← Back to Homepage
         </button>
       </div>
+
       <div className="maps-header">
         <h1>Choose Your Dream Destination</h1>
-        <p>Click on a continent to explore travel options</p>
-        {hoveredContinent && (
-          <div className="continent-tooltip">
-            <span> {hoveredContinent}</span>
+        <p>Select your travel preference and click on a highlighted continent</p>
+        
+        {/* Travel Preference Dropdown */}
+        <div className="preference-selector">
+          <label htmlFor="category-select">Travel Preference:</label>
+          <select 
+            id="category-select" 
+            value={selectedCategory} 
+            onChange={handleCategorySelect}
+            className="category-dropdown"
+          >
+            <option value="">Select a travel preference...</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Available Continents Display */}
+        {selectedCategory && availableContinents.length > 0 && (
+          <div className="available-continents">
+            <p>
+              <strong>{selectedCategory}</strong> destinations available in: {" "}
+              <span className="continent-list">
+                {availableContinents.join(", ")}
+              </span>
+            </p>
           </div>
         )}
       </div>
@@ -53,7 +132,7 @@ function Maps() {
 
           {/* North America */}
           <g
-            className="continent north-america"
+            className={getContinentClass("North America")}
             transform="translate(-20.000000,310.000000) scale(0.0400000,-0.040000)"
             fill="#ff6b6b"
             stroke="none"
@@ -83,7 +162,7 @@ function Maps() {
 
           {/* South America */}
           <path
-            className="continent south-america"
+            className={getContinentClass("South America")}
             fill="#4ecdc4"
             style={{
               transform: "scale(0.5) translateX(300px) translateY(-50px)",
@@ -101,7 +180,7 @@ function Maps() {
             transform="translate(400.000000,300.000000) scale(0.040000,-0.040000)"
             fill="#45b7d1"
             stroke="none"
-            className="continent europe"
+            className={getContinentClass("Europe")}
             onClick={() => handleContinentClick("Europe")}
             onMouseEnter={() => handleContinentHover("Europe")}
             onMouseLeave={handleContinentLeave}
@@ -131,9 +210,9 @@ function Maps() {
               transform: "scale(0.5) translateX(70%) translateY(-10%)",
               transformOrigin: "left bottom",
             }}
-            className="continent africa"
+            className={getContinentClass("Africa")}
             d="M201.56 19.495l-87.79 9.131-73.745 94.814v52.676l56.186 61.805 64.615-13.344 49.164 9.832-10.535 37.926 33.711 61.103-16.855 42.842 39.79 116.225 53.62-8.768 49.164-55.484 4.213-38.629 31.605-23.879-6.322-69.531 83.594-106.994-51.989 7.263-79.363-138.359-125.016-8.428-14.046-30.2zm252.346 319.8l-14.402 20.86-13.408.496c-11.849 24.321-12.598 38.019-13.907 66.547l17.383 4.471 21.852-52.147 2.482-40.226z"
-         onClick={() => handleContinentClick("Africa")}
+            onClick={() => handleContinentClick("Africa")}
             onMouseEnter={() => handleContinentHover("Africa")}
             onMouseLeave={handleContinentLeave}
             data-continent="Africa"
@@ -144,7 +223,7 @@ function Maps() {
             transform="translate(680.000000,360.000000) scale(0.050000,-0.050000)"
             fill="#ffeaa7"
             stroke="none"
-            className="continent asia"
+            className={getContinentClass("Asia")}
             onClick={() => handleContinentClick("Asia")}
             onMouseEnter={() => handleContinentHover("Asia")}
             onMouseLeave={handleContinentLeave}
@@ -202,12 +281,12 @@ function Maps() {
           {/* Australia/Oceania */}
           <g
             fill="#dda0dd"
-            className="continent oceania"
+            className={getContinentClass("Oceania")}
             transform="translate(910.000000,400.000000) scale(0.300000,0.300000)"
-             onClick={() => handleContinentClick("Australia")}
-            onMouseEnter={() => handleContinentHover("Australia")}
+            onClick={() => handleContinentClick("Oceania")}
+            onMouseEnter={() => handleContinentHover("Oceania")}
             onMouseLeave={handleContinentLeave}
-            data-continent="Australia"
+            data-continent="Oceania"
           >
             <path
               d="M434.071,449.363l-5.785,0.82c-1.182,0.18-2.396,0.115-3.569-0.156l-13.276-3.142
@@ -280,7 +359,7 @@ function Maps() {
             </div>
             <div className="legend-item">
               <span className="legend-color oceania-color"></span>
-              <span>Australia</span>
+              <span>Oceania</span>
             </div>
           </div>
         </div>

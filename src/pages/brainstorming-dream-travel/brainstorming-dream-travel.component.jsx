@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './brainstorming-dream-travel.styles.css';
 
@@ -7,13 +8,37 @@ const BrainstormingDreamTravel = () => {
   const [input, setInput] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const selectedContinent = location.state?.selectedContinent;
+  
+  // Get data from location state (passed from maps page)
+  const { selectedCategory, selectedContinent } = location.state || {};
+  
+  // Get travel data from Redux store
+  const { travelData } = useSelector((state) => state.travel);
 
   useEffect(() => {
-    // Add welcome message when component mounts
-    const welcomeMessage = selectedContinent 
-      ? `🌍 Great choice! You've selected ${selectedContinent}. Let's brainstorm your dream travel experience there. What type of adventure are you looking for?`
-      : "🌍 Welcome to your dream travel brainstorming session! Tell me about the destination you have in mind.";
+    // Get places for the selected category and continent
+    const availablePlaces = selectedCategory && selectedContinent && travelData[selectedCategory] 
+      ? travelData[selectedCategory].places[selectedContinent] || []
+      : [];
+
+    // Create a detailed welcome message
+    let welcomeMessage = "🌍 Welcome to your dream travel brainstorming session!";
+    
+    if (selectedCategory && selectedContinent) {
+      welcomeMessage = `🌍 Perfect! You're interested in **${selectedCategory}** destinations in **${selectedContinent}**.`;
+      
+      if (availablePlaces.length > 0) {
+        welcomeMessage += "\n\nHere are some amazing places to consider:\n\n";
+        availablePlaces.forEach((place) => {
+          welcomeMessage += `**${place.name}** - ${place.description}\n\n`;
+        });
+        welcomeMessage += "Which of these destinations appeals to you most? Or tell me what specific experiences you're looking for!";
+      } else {
+        welcomeMessage += "\n\nTell me what specific experiences you're looking for in this category!";
+      }
+    } else if (selectedContinent) {
+      welcomeMessage = `🌍 Great choice! You've selected ${selectedContinent}. Let's brainstorm your dream travel experience there. What type of adventure are you looking for?`;
+    }
     
     setMessages([{ text: welcomeMessage, sender: 'ai' }]);
 
@@ -35,7 +60,7 @@ const BrainstormingDreamTravel = () => {
       window.removeEventListener('resize', handleViewportChange);
       window.removeEventListener('orientationchange', handleViewportChange);
     };
-  }, [selectedContinent]);
+  }, [selectedContinent, selectedCategory, travelData]);
 
   const handleSendMessage = () => {
     if (input.trim()) {

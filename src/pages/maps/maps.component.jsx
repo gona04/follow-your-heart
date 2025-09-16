@@ -126,7 +126,7 @@ function Maps() {
 
           {/* Africa */}
           <path
-            fill="#000"
+            fill="#96ceb4"
             style={{
               transform: "scale(0.5) translateX(70%) translateY(-10%)",
               transformOrigin: "left bottom",
@@ -282,10 +282,6 @@ function Maps() {
               <span className="legend-color oceania-color"></span>
               <span>Australia</span>
             </div>
-            {/* <div className="legend-item">
-              <span className="legend-color antarctica-color"></span>
-              <span>Antarctica</span>
-            </div> */}
           </div>
         </div>
       </div>
